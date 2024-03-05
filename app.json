@@ -1,4 +1,13 @@
 {
   "name": "RNExample",
-  "displayName": "RNExample"
+  "displayName": "RNExample",
+  "expo": {
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "userInterfaceStyle": "automatic"
+    },
+    "android": {
+      "userInterfaceStyle": "automatic"
+    }
+  }
 }
