@@ -6,6 +6,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {ExampleHome} from './ExampleHome/ExampleHome';
 import {ExampleOther} from './ExampleOther/ExampleOther';
 import {IsDarkMode, backgroundStyle} from './res/Styles';
+import {Home} from './ExampleHome/Home';
+import HomeStart from './ExampleHome/HomeStart';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +20,7 @@ function App() {
       />
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={ExampleHome} />
+          <Stack.Screen name="Home" component={HomeStart} />
           <Stack.Screen name="Other" component={ExampleOther} />
         </Stack.Navigator>
       </NavigationContainer>
