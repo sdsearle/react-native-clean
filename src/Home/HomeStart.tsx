@@ -4,13 +4,14 @@ import {HomeRepo} from './HomeRepo';
 import {HomeViewModel} from './HomeViewModel';
 import {Home} from './Home';
 import {View} from 'react-native';
+import {UpdateCountUseCase} from './UpdateCountUseCase';
 
 const repo = new HomeRepo();
-const interactor = new HomeInteractor(repo);
-const HomeStart = () => {
-  const viewModel = HomeViewModel(interactor);
+const updateCountUseCase = new UpdateCountUseCase(repo);
+const HomeStart = ({navigation}) => {
+  const viewModel = HomeViewModel(updateCountUseCase);
 
-  return <Home viewModel={viewModel} />;
+  return <Home viewModel={viewModel} navigation={navigation} />;
 };
 
 export default HomeStart;

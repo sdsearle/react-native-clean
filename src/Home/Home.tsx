@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {Button, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from '../res/Styles';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-export function Home({viewModel}) {
+export function Home({viewModel, navigation}) {
   return (
     <View style={{flex: 1}}>
       <View style={styles.centered}>
         <Text style={styles.sectionTitle}>Current Count {viewModel.count}</Text>
+        <Button
+          title="Go to Other"
+          onPress={() => navigation.navigate('Other')}
+        />
       </View>
       <TouchableOpacity style={styles.fab} onPress={viewModel.updateCount} />
     </View>

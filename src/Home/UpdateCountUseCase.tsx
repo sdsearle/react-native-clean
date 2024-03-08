@@ -1,6 +1,6 @@
 import {HomeRepo} from './HomeRepo';
 
-export class HomeInteractor {
+export class UpdateCountUseCase {
   repo: HomeRepo;
 
   constructor(repo: HomeRepo) {

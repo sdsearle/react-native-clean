@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import ExampleHome from '../ExampleHome/ExampleHome';
-import ExampleOther from '../ExampleOther/ExampleOther';
+import {ExampleOther} from '../ExampleOther/ExampleOther';
+import HomeStart from '../Home/HomeStart';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +12,7 @@ const Navi = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
-          component={ExampleHome}
+          component={HomeStart}
           options={{title: 'Welcome'}}
         />
         <Stack.Screen name="Profile" component={ExampleOther} />

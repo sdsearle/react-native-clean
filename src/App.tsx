@@ -3,11 +3,9 @@ import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {ExampleHome} from './ExampleHome/ExampleHome';
 import {ExampleOther} from './ExampleOther/ExampleOther';
 import {IsDarkMode, backgroundStyle} from './res/Styles';
-import {Home} from './ExampleHome/Home';
-import HomeStart from './ExampleHome/HomeStart';
+import HomeStart from './Home/HomeStart';
 
 const Stack = createNativeStackNavigator();
 
