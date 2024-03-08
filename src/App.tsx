@@ -3,7 +3,7 @@ import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {ExampleOther} from './ExampleOther/ExampleOther';
+import {SCARV} from './SCARV/SCARV';
 import {IsDarkMode, backgroundStyle} from './res/Styles';
 import HomeStart from './Home/HomeStart';
 
@@ -19,7 +19,7 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeStart} />
-          <Stack.Screen name="Other" component={ExampleOther} />
+          <Stack.Screen name="SCARV" component={SCARV} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

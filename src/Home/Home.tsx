@@ -9,7 +9,7 @@ export function Home({viewModel, navigation}) {
         <Text style={styles.sectionTitle}>Current Count {viewModel.count}</Text>
         <Button
           title="Go to Other"
-          onPress={() => navigation.navigate('Other')}
+          onPress={() => navigation.navigate('SCARV')}
         />
       </View>
       <TouchableOpacity style={styles.fab} onPress={viewModel.updateCount} />

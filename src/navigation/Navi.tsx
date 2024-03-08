@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {ExampleOther} from '../ExampleOther/ExampleOther';
+import {SCARV} from '../SCARV/SCARV';
 import HomeStart from '../Home/HomeStart';
 
 const Stack = createNativeStackNavigator();
@@ -15,7 +15,7 @@ const Navi = () => {
           component={HomeStart}
           options={{title: 'Welcome'}}
         />
-        <Stack.Screen name="Profile" component={ExampleOther} />
+        <Stack.Screen name="Profile" component={SCARV} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,0 +1,3 @@
+interface ScarvState {
+  count: number;
+}
