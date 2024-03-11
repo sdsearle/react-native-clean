@@ -13,6 +13,5 @@ export const useScarvContext = () => {
   if (!context) {
     throw new Error('useScarvContext must be used within a ScarvProvider');
   }
-  console.log(context.state.count);
   return context;
 };
