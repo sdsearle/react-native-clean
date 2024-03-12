@@ -6,6 +6,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {SCARV} from './SCARV/SCARV';
 import {IsDarkMode, backgroundStyle} from './res/Styles';
 import HomeStart from './Home/HomeStart';
+import {Pokemon} from './Pokemon/Pokemon';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ function App() {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeStart} />
           <Stack.Screen name="SCARV" component={SCARV} />
+          <Stack.Screen name="Pokemon" component={Pokemon} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

@@ -15,7 +15,8 @@ const Navi = () => {
           component={HomeStart}
           options={{title: 'Welcome'}}
         />
-        <Stack.Screen name="Profile" component={SCARV} />
+        <Stack.Screen name="SCARV" component={SCARV} />
+        <Stack.Screen name="Pokemon" component={SCARV} />
       </Stack.Navigator>
     </NavigationContainer>
   );

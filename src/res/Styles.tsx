@@ -1,19 +1,20 @@
 import {StyleSheet, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {dimenen, fontSize} from './dimen';
 
 export const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    marginTop: dimenen.xxl,
+    paddingHorizontal: dimenen.xl,
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: dimenen.xl,
     fontWeight: '600',
     color: '#000',
   },
   sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
+    marginTop: dimenen.xs,
+    fontSize: fontSize.l,
     fontWeight: '400',
   },
   highlight: {
@@ -31,10 +32,10 @@ export const styles = StyleSheet.create({
     height: 100,
     backgroundColor: '#fff',
     borderRadius: 50,
-    margin: 20,
+    margin: dimenen.l,
     position: 'absolute',
-    bottom: 10,
-    right: 10,
+    bottom: dimenen.xs,
+    right: dimenen.xs,
   },
 });
 

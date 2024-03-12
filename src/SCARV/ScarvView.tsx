@@ -11,8 +11,8 @@ export function ScarvView({navigation}) {
         <Text style={styles.sectionTitle}>Current Count {vm.state.count}</Text>
         <Button title="Reset" onPress={vm.reset} />
         <Button
-          title="Go to Home"
-          onPress={() => navigation.navigate('Home')}
+          title="Go to Pokemon"
+          onPress={() => navigation.navigate('Pokemon')}
         />
       </View>
       <TouchableOpacity style={styles.fab} onPress={vm.incrementCount} />
