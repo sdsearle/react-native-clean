@@ -7,6 +7,7 @@ import {SCARV} from './SCARV/SCARV';
 import {IsDarkMode, backgroundStyle} from './res/Styles';
 import HomeStart from './Home/HomeStart';
 import {Pokemon} from './Pokemon/Pokemon';
+import ViewStart from './STUVVMA/ViewStart';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ function App() {
           <Stack.Screen name="Home" component={HomeStart} />
           <Stack.Screen name="SCARV" component={SCARV} />
           <Stack.Screen name="Pokemon" component={Pokemon} />
+          <Stack.Screen name="STUVVMS" component={ViewStart} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

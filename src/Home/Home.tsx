@@ -8,8 +8,12 @@ export function Home({viewModel, navigation}) {
       <View style={styles.centered}>
         <Text style={styles.sectionTitle}>Current Count {viewModel.count}</Text>
         <Button
-          title="Go to Other"
+          title="Go to SCARV"
           onPress={() => navigation.navigate('SCARV')}
+        />
+        <Button
+          title="Go to STUVVMS"
+          onPress={() => navigation.navigate('STUVVMS')}
         />
       </View>
       <TouchableOpacity style={styles.fab} onPress={viewModel.updateCount} />
