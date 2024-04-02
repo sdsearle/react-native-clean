@@ -1,4 +1,4 @@
-#Things To note:
+# Things To note:
 This repo showcases a few different ways to setup RN with different architectures.
 
 # Getting Started
