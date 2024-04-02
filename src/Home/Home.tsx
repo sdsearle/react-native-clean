@@ -15,6 +15,10 @@ export function Home({viewModel, navigation}) {
           title="Go to STUVVMS"
           onPress={() => navigation.navigate('STUVVMS')}
         />
+        <Button
+          title="Go to Clean"
+          onPress={() => navigation.navigate('Clean')}
+        />
       </View>
       <TouchableOpacity style={styles.fab} onPress={viewModel.updateCount} />
     </View>

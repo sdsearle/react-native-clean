@@ -13,3 +13,18 @@ export const getPokemonCall = async (color: string, dispatch) => {
       console.error(error);
     });
 };
+
+export const getPokemon = (color: string) => {
+  console.log('Getting Pokemon');
+  return fetch('https://pokeapi.co/api/v2/pokemon-color/' + color)
+    .then(response => response.json())
+    .then(json => {
+      console.log(JSON.stringify(json));
+
+      return json.pokemon_species as PokemonModel[];
+    })
+    .catch(error => {
+      console.error(error);
+      return [] as PokemonModel[];
+    });
+};

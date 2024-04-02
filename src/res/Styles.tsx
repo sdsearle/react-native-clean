@@ -1,4 +1,4 @@
-import {StyleSheet, useColorScheme} from 'react-native';
+import {StyleSheet, processColor, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {dimenen, fontSize} from './dimen';
 
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: dimenen.xl,
   },
   sectionTitle: {
-    fontSize: dimenen.xl,
+    fontSize: 24,
     fontWeight: '600',
     color: '#000',
   },
@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     marginTop: dimenen.xs,
     fontSize: fontSize.l,
     fontWeight: '400',
+    color: '#000',
   },
   highlight: {
     fontWeight: '700',
@@ -46,3 +47,13 @@ export function IsDarkMode() {
 export const backgroundStyle = {
   backgroundColor: IsDarkMode() ? Colors.darker : Colors.lighter,
 };
+
+export function getTextColor(value: string): string {
+  value = value.replace('#', '');
+  const numericValue = parseInt(value, 16);
+  const r = (numericValue & 0xff0000) >> 16;
+  const g = (numericValue & 0xff00) >> 8;
+  const b = numericValue & 0xff;
+  const l = (0.2126 * r) / 255 + (0.7152 * g) / 255 + (0.0722 * b) / 255;
+  return l > Math.sqrt(1.05 * 0.05) - 0.05 ? '#000' : '#FFF';
+}
