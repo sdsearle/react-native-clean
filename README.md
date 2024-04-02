@@ -1,4 +1,5 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+#Things To note:
+This repo showcases a few different ways to setup RN with different architectures.
 
 # Getting Started
 
