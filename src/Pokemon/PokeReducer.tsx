@@ -10,10 +10,8 @@ export const pokeReducer = (
 
   switch (action.type) {
     case UPDATE_POKEMON_LIST.type:
-      console.log(JSON.stringify(action.payload));
-      console.log('ZOL');
-
       state.pokemon = action.payload;
+      console.log('ZOL ' + Date.now());
       return {...state};
     default:
       console.log('DEFAULTED');

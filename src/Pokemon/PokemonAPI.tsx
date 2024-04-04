@@ -2,11 +2,13 @@ import {UPDATE_POKEMON_LIST} from './GetPokemonAction';
 import {PokemonModel} from './PokemonModels';
 
 export const getPokemonCall = async (color: string, dispatch) => {
-  console.log('Getting Pokemon');
+  console.log('Getting Pokemon ' + color);
   fetch('https://pokeapi.co/api/v2/pokemon-color/' + color)
     .then(response => response.json())
     .then(json => {
       const t = UPDATE_POKEMON_LIST.type;
+      console.log(json);
+
       dispatch({type: t, payload: json.pokemon_species});
     })
     .catch(error => {
@@ -19,7 +21,7 @@ export const getPokemon = (color: string) => {
   return fetch('https://pokeapi.co/api/v2/pokemon-color/' + color)
     .then(response => response.json())
     .then(json => {
-      console.log(JSON.stringify(json));
+      //console.log(JSON.stringify(json));
 
       return json.pokemon_species as PokemonModel[];
     })

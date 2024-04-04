@@ -6,6 +6,7 @@ export const PokeViewModel = () => {
   const {state, dispatch} = usePokeContext();
 
   const getPokemon = (color: string) => {
+    console.log(Date.now());
     getPokemonCall(color, dispatch);
   };
 

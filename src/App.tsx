@@ -11,8 +11,10 @@ import ViewStart from './STUVVMA/ViewStart';
 import {CleanStart} from './Clean/CleanStart';
 import {CleanPokemon} from './CleanPokemon/CleanPokemon';
 import {CleanPokemonStart} from './CleanPokemon/CleanPokemonStart';
+import {QueryClient, QueryClientProvider} from 'react-query';
 
 const Stack = createNativeStackNavigator();
+const client = new QueryClient();
 
 function App() {
   return (
@@ -21,16 +23,18 @@ function App() {
         barStyle={IsDarkMode() ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeStart} />
-          <Stack.Screen name="SCARV" component={SCARV} />
-          <Stack.Screen name="Pokemon" component={Pokemon} />
-          <Stack.Screen name="STUVVMS" component={ViewStart} />
-          <Stack.Screen name="Clean" component={CleanStart} />
-          <Stack.Screen name="CleanPokemon" component={CleanPokemonStart} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <QueryClientProvider client={client}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={HomeStart} />
+            <Stack.Screen name="SCARV" component={SCARV} />
+            <Stack.Screen name="Pokemon" component={Pokemon} />
+            <Stack.Screen name="STUVVMS" component={ViewStart} />
+            <Stack.Screen name="Clean" component={CleanStart} />
+            <Stack.Screen name="CleanPokemon" component={CleanPokemonStart} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }

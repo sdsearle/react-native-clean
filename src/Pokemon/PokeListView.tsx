@@ -30,7 +30,7 @@ export function PokeListView({navigation}) {
               <Button
                 color={item.value}
                 title={title}
-                onPress={() => vm.getPokemon(item.value)}
+                onPress={() => vm.getPokemon(item.key)}
               />
             </View>
           );

@@ -10,6 +10,7 @@ export const usePokeVM = () => {
   const pokemon = useGetPokemonUseCase();
 
   const useGetPokemonOfColor = (color: string) => {
+    console.log('ZOL ' + Date.now());
     useApiCallForPokemonByColorUseCase(color, repo);
   };
 
