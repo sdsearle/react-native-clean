@@ -9,7 +9,9 @@ import {PokeRepoContext, PokeRepoProvider} from './CleanPokeRepo';
 
 export function CleanPokemon() {
   const vm = usePokeVM();
-  //TODO REMOVE REPO FROM HERE
+  const colorButtonHandler = (color: string) => {
+    vm.useGetPokemonOfColor(color);
+  };
   return (
     <View>
       <View>

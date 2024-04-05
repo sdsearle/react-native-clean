@@ -5,13 +5,13 @@ import {useGetPokemonColorUseCase} from './GetPokemonColorsUseCase';
 import {useGetPokemonUseCase} from './GetPokemonUseCase';
 
 export const usePokeVM = () => {
-  const repo = useContext(PokeRepoContext);
   const colors = useGetPokemonColorUseCase();
   const pokemon = useGetPokemonUseCase();
+  const apiCall = useApiCallForPokemonByColorUseCase();
 
   const useGetPokemonOfColor = (color: string) => {
     console.log('ZOL ' + Date.now());
-    useApiCallForPokemonByColorUseCase(color, repo);
+    apiCall(color);
   };
 
   return {colors, pokemon, useGetPokemonOfColor};
