@@ -29,7 +29,7 @@ export function CleanPokemon() {
                   margin: dimenen.xs,
                   backgroundColor: item.value,
                 }}
-                onPress={() => vm.useGetPokemonOfColor(item.key)}>
+                onPress={() => colorButtonHandler(item.key)}>
                 <Text
                   style={
                     (styles.sectionTitle,
