@@ -3,11 +3,15 @@ import {countStoreRepo} from './CountStoreRepo';
 import {getCountUseCase, incrementCountStoreUseCase} from './IncrementUseCase';
 import {useCleanRepo} from './CleanRepo';
 import {useNavigation} from '@react-navigation/native';
+import {useShowDialog} from '../Dialog/ShowDialogUseCase';
+import {useHideDialogUseCase} from '../Dialog/HideDialogUseCase';
 
 export const useCleanVM = () => {
   const repo = countStoreRepo;
   const cleanRepo = useCleanRepo();
   const nav = useNavigation();
+  const createDialog = useShowDialog();
+  const closeDialog = useHideDialogUseCase();
 
   const counter = useSyncExternalStore(
     countStoreRepo.subscribe,
@@ -36,6 +40,10 @@ export const useCleanVM = () => {
     cleanRepo.addTodo();
   };
 
+  const showDialog = () => {
+    createDialog('title', 'description', 'positive', closeDialog);
+  };
+
   return {
     counter,
     todos,
@@ -44,5 +52,6 @@ export const useCleanVM = () => {
     addTodo,
     cleanTodos,
     goToPokemonClean,
+    showDialog,
   };
 };

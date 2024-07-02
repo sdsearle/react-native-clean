@@ -5,7 +5,7 @@ import {useCleanVM} from './CleanVM';
 import {countStoreRepo, todosStore} from './CountStoreRepo';
 
 export function Clean() {
-  console.log('Rendering');
+  //console.log('Rendering');
   const vm = useCleanVM();
   return (
     <View style={styles.centered}>
@@ -24,6 +24,7 @@ export function Clean() {
         }}
       />
       <Button title="Add Todo" onPress={vm.addTodo} />
+      <Button title="Launch Dialog" onPress={vm.showDialog} />
       <FlatList
         data={vm.cleanTodos}
         renderItem={({item}) => (

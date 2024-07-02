@@ -7,8 +7,7 @@ import {useQuery} from 'react-query';
 
 export const usePokeRepo = () => {
   const [colors, setColors] = useState(PokemonColors);
-  const [pokemon, setPokemon] = useState<PokemonModel[]>([]);
-  const [currentColor, setCurrentColor] = useState('black');
+  let currentColor = 'black';
   const query = useQuery([currentColor], () => getPokemon(currentColor));
 
   //This was used before react query
@@ -17,45 +16,48 @@ export const usePokeRepo = () => {
   //     api.then(r => setPokemon(r));
   //   }, []);
 
-  useEffect(() => {
-    const data = query.data;
+  //   useEffect(() => {
+  //     const data = query.data;
 
-    if (query.isLoading) {
-      return setPokemon([]);
-    }
-    if (query.isError) {
-      return setPokemon([]);
-    }
+  //     // if (query.isLoading) {
+  //     //   return setPokemon([]);
+  //     // }
+  //     // if (query.isError) {
+  //     //   return setPokemon([]);
+  //     // }
 
-    if (data === undefined) {
-      return setPokemon([]);
-    }
+  //     // if (data === undefined) {
+  //     //   return setPokemon([]);
+  //     // }
 
-    console.log('ZOL ' + Date.now());
-    return setPokemon(data);
-  }, [query.data, query.isLoading, query.isError]);
+  //     console.log('ZOL ' + Date.now());
+  //     //return setPokemon(data);
+  //   }, [query.data, query.isLoading, query.isError]);
 
-  const useGetPokemonApi = (color: string) => {
+  const setSelectedColor = (color: string) => {
     //This was used before react query
     //const api = getPokemon(color);
     //api.then(r => setPokemon(r));
-    setCurrentColor(color);
+    console.log(color);
+    currentColor = color;
+    query.refetch();
   };
 
-  return {colors, pokemon, useGetPokemonApi};
+  return {colors, query, setSelectedColor};
 };
 
-export const PokeRepoContext = React.createContext<
-  ReturnType<typeof usePokeRepo>
->({} as any);
+//Avoid using context unless neccessary. Example of this is Global UI see Dialog usecase
+// export const PokeRepoContext = React.createContext<
+//   ReturnType<typeof usePokeRepo>
+// >({} as any);
 
-export const PokeRepoProvider: React.FC = ({children}) => {
-  const pokeRepo = usePokeRepo();
-  //console.log('PROVIDER ' + JSON.stringify(pokeRepo));
+// export const PokeRepoProvider: React.FC = ({children}) => {
+//   const pokeRepo = usePokeRepo();
+//   //console.log('PROVIDER ' + JSON.stringify(pokeRepo));
 
-  return (
-    <PokeRepoContext.Provider value={pokeRepo}>
-      {children}
-    </PokeRepoContext.Provider>
-  );
-};
+//   return (
+//     <PokeRepoContext.Provider value={pokeRepo}>
+//       {children}
+//     </PokeRepoContext.Provider>
+//   );
+// };

@@ -12,6 +12,8 @@ import {CleanStart} from './Clean/CleanStart';
 import {CleanPokemon} from './CleanPokemon/CleanPokemon';
 import {CleanPokemonStart} from './CleanPokemon/CleanPokemonStart';
 import {QueryClient, QueryClientProvider} from 'react-query';
+import {DialogView} from './Dialog/DialogView';
+import {DialogProvider} from './Dialog/DialogRepo';
 
 const Stack = createNativeStackNavigator();
 const client = new QueryClient();
@@ -25,14 +27,17 @@ function App() {
       />
       <QueryClientProvider client={client}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={HomeStart} />
-            <Stack.Screen name="SCARV" component={SCARV} />
-            <Stack.Screen name="Pokemon" component={Pokemon} />
-            <Stack.Screen name="STUVVMS" component={ViewStart} />
-            <Stack.Screen name="Clean" component={CleanStart} />
-            <Stack.Screen name="CleanPokemon" component={CleanPokemonStart} />
-          </Stack.Navigator>
+          <DialogProvider>
+            <DialogView />
+            <Stack.Navigator initialRouteName="Home">
+              <Stack.Screen name="Home" component={HomeStart} />
+              <Stack.Screen name="SCARV" component={SCARV} />
+              <Stack.Screen name="Pokemon" component={Pokemon} />
+              <Stack.Screen name="STUVVMS" component={ViewStart} />
+              <Stack.Screen name="Clean" component={CleanStart} />
+              <Stack.Screen name="CleanPokemon" component={CleanPokemonStart} />
+            </Stack.Navigator>
+          </DialogProvider>
         </NavigationContainer>
       </QueryClientProvider>
     </SafeAreaProvider>

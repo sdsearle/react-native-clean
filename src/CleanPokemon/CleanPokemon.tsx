@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import {Button, FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {dimenen} from '../res/dimen';
 import {PokemonColors} from '../Pokemon/PokemonColors';
@@ -6,14 +6,17 @@ import {usePokeVM} from './CleanPokeVM';
 import {getTextColor, styles} from '../res/Styles';
 import {PokeProvider} from '../Pokemon/PokeProvider';
 import {PokeRepoContext, PokeRepoProvider} from './CleanPokeRepo';
+import {Child} from './Child';
+import ChildMemo from './ChildMemo';
 
 export function CleanPokemon() {
   const vm = usePokeVM();
   const colorButtonHandler = (color: string) => {
     vm.useGetPokemonOfColor(color);
   };
+  console.log('Poke render');
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View>
         <FlatList
           contentContainerStyle={{margin: dimenen.xs}}
@@ -47,28 +50,34 @@ export function CleanPokemon() {
           keyExtractor={item => item.key}
         />
       </View>
-      <FlatList
-        style={{marginBottom: dimenen.s}}
-        ListFooterComponentStyle={{
-          margin: dimenen.ivxl,
-        }}
-        ListFooterComponent={<View />}
-        horizontal={false}
-        data={vm.pokemon}
-        renderItem={({item, index}) => {
-          const color = 180 / (index % 2) + 100;
-          return (
-            <View
-              style={{
-                paddingStart: dimenen.xs,
-                backgroundColor: `rgba(${color}, ${color}, ${color}, 1)`,
-              }}>
-              <Text style={styles.sectionTitle}>{item.name}</Text>
-            </View>
-          );
-        }}
-        keyExtractor={item => item.name}
-      />
+      {vm.pokemon.l ? (
+        <Text style={styles.sectionTitle}>{'...Loading'}</Text>
+      ) : (
+        <FlatList
+          style={{marginBottom: dimenen.s}}
+          ListFooterComponentStyle={{
+            margin: dimenen.ivxl,
+          }}
+          ListFooterComponent={<View />}
+          horizontal={false}
+          data={vm.pokemon.filteredPokemon}
+          renderItem={({item, index}) => {
+            const color = 180 / (index % 2) + 100;
+            return (
+              <View
+                style={{
+                  paddingStart: dimenen.xs,
+                  backgroundColor: `rgba(${color}, ${color}, ${color}, 1)`,
+                }}>
+                <Text style={styles.sectionTitle}>{item.name}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={item => item.name}
+        />
+      )}
+      <Child />
+      <ChildMemo isMemo={true} />
     </View>
   );
 }
