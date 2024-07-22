@@ -9,11 +9,11 @@ import HomeStart from './Home/HomeStart';
 import {Pokemon} from './Pokemon/Pokemon';
 import ViewStart from './STUVVMA/ViewStart';
 import {CleanStart} from './Clean/CleanStart';
-import {CleanPokemon} from './CleanPokemon/CleanPokemon';
 import {CleanPokemonStart} from './CleanPokemon/CleanPokemonStart';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {DialogView} from './Dialog/DialogView';
 import {DialogProvider} from './Dialog/DialogRepo';
+import {CleanPokemonDIStart} from './CleanPokemonDI/CleanPokemonDIStart';
 
 const Stack = createNativeStackNavigator();
 const client = new QueryClient();
@@ -36,6 +36,10 @@ function App() {
               <Stack.Screen name="STUVVMS" component={ViewStart} />
               <Stack.Screen name="Clean" component={CleanStart} />
               <Stack.Screen name="CleanPokemon" component={CleanPokemonStart} />
+              <Stack.Screen
+                name="CleanPokemonDIStart"
+                component={CleanPokemonDIStart}
+              />
             </Stack.Navigator>
           </DialogProvider>
         </NavigationContainer>

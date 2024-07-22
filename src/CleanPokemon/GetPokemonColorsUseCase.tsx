@@ -1,6 +1,6 @@
 import {useContext} from 'react';
-import {PokeRepoContext, usePokeRepo} from './CleanPokeRepo';
+import {usePokeRepo} from './CleanPokeRepo';
 
-export const useGetPokemonColorUseCase = (repo: PokeRepoContext) => {
+export const useGetPokemonColorUseCase = (repo: usePokeRepo) => {
   return repo.colors;
 };

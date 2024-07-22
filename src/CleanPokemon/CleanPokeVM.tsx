@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import {useApiCallForPokemonByColorUseCase} from './ApiCallForPokemonByColorUseCase';
-import {PokeRepoContext, usePokeRepo} from './CleanPokeRepo';
+import {usePokeRepo} from './CleanPokeRepo';
 import {useGetPokemonColorUseCase} from './GetPokemonColorsUseCase';
 import {useGetPokemonUseCase} from './GetPokemonUseCase';
 import {useCleanRepo} from '../Clean/CleanRepo';

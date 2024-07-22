@@ -1,9 +1,9 @@
 import {useContext} from 'react';
 import {useCleanRepo} from '../Clean/CleanRepo';
-import {PokeRepoContext, usePokeRepo} from './CleanPokeRepo';
+import {usePokeRepo} from './CleanPokeRepo';
 import {PokemonModel} from '../Pokemon/PokemonModels';
 
-export const useGetPokemonUseCase = (repo: PokeRepoContext) => {
+export const useGetPokemonUseCase = (repo: usePokeRepo) => {
   //Example use case of why this useCases can be important.
   const filteredPokemon: PokemonModel[] =
     repo.query.data?.filter(item => {

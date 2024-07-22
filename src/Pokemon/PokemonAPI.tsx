@@ -21,6 +21,7 @@ export const getPokemon = (color: string) => {
   return fetch('https://pokeapi.co/api/v2/pokemon-color/' + color)
     .then(response => response.json())
     .then(json => {
+      console.log('fetched data');
       //console.log(JSON.stringify(json));
 
       return json.pokemon_species as PokemonModel[];

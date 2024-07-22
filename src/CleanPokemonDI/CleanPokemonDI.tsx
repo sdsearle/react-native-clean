@@ -1,40 +1,12 @@
-import React, {useContext, useEffect, useRef} from 'react';
-import {Button, FlatList, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {dimenen} from '../res/dimen';
-import {PokemonColors} from '../Pokemon/PokemonColors';
 import {usePokeVM} from './CleanPokeVM';
 import {getTextColor, styles} from '../res/Styles';
-import {PokeProvider} from '../Pokemon/PokeProvider';
 import {Child} from './Child';
 import ChildMemo from './ChildMemo';
-import {useQuery} from 'react-query';
-import {getPokemon} from '../Pokemon/PokemonAPI';
 
-//CustomHook 1 gets 50% of the job done
-
-/****
-export function CleanPokemon() {
-  const query = useQuery(['currentColor'], () => getPokemon('currentColor'), {
-    select: data => {
-      data.filter(item => {
-        if (item.name.includes('s')) {
-          return item;
-        }
-      });
-    },
-  });
-****/
-
-//CustomHook 2
-/*** 
- result = CleanPokemon()
- newreulst = manipulate(result)
-*/
-
-export function CleanPokemon() {
-  const query = useQuery(['black'], () => getPokemon('black'));
-  const query2 = useQuery(['grey'], () => getPokemon('black'));
-
+export function CleanPokemonDI() {
   const vm = usePokeVM();
   const colorButtonHandler = (color: string) => {
     vm.useGetPokemonOfColor(color);
@@ -75,7 +47,7 @@ export function CleanPokemon() {
           keyExtractor={item => item.key}
         />
       </View>
-      {vm.pokemon.l ? (
+      {vm.pokemon.isLoading ? (
         <Text style={styles.sectionTitle}>{'...Loading'}</Text>
       ) : (
         <FlatList
@@ -85,7 +57,7 @@ export function CleanPokemon() {
           }}
           ListFooterComponent={<View />}
           horizontal={false}
-          data={vm.pokemon.filteredPokemon}
+          data={vm.pokemon.data ?? []}
           renderItem={({item, index}) => {
             const color = 180 / (index % 2) + 100;
             return (
