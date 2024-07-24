@@ -4,6 +4,7 @@ import React from 'react';
 
 export const useDialogRepo = () => {
   const [dialogModels, setDialogModels] = useState<DialogModel[]>([]);
+  let n = 0;
 
   const createDialog = (
     t: string,
@@ -15,6 +16,7 @@ export const useDialogRepo = () => {
     neg?: string,
     negFun?: Function,
   ) => {
+    console.log(`ZOL Creating with id ${n}`);
     let newDialog = {
       title: t,
       description: des,
@@ -25,19 +27,16 @@ export const useDialogRepo = () => {
       negative: neg,
       negFun: negFun,
       visibility: true,
+      id: n,
     };
-    let temp = dialogModels;
-    temp.push(newDialog);
+    n++;
     console.log(`Visibility ${newDialog.visibility}`);
-    console.log(`Length ${temp.length}`);
 
-    setDialogModels(temp);
+    setDialogModels([...dialogModels, newDialog]);
   };
 
   const removeDialog = () => {
-    let temp = dialogModels;
-    temp.pop();
-    setDialogModels(temp);
+    setDialogModels(dialogModels.splice(0, -1));
   };
 
   return {dialogModels, createDialog, removeDialog};

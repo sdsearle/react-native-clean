@@ -8,6 +8,7 @@ export type DialogModel = {
   negative?: string;
   negFun?: Function;
   visibility: boolean;
+  id: number;
 };
 
 export const baseDialog: DialogModel = {
@@ -20,4 +21,5 @@ export const baseDialog: DialogModel = {
   negative: '',
   negFun: () => {},
   visibility: false,
+  id: 0,
 };
