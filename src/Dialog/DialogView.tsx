@@ -1,53 +1,74 @@
-import React, {useState} from 'react';
-import {Alert, Modal, Pressable, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Alert, FlatList, Modal, Pressable, Text, View} from 'react-native';
 import {styles} from '../res/Styles';
 import {useDialogVM} from './DialogVM';
 import {useHideDialogUseCase} from './HideDialogUseCase';
+import {DialogModel} from './DialogModel';
+import {dimenen} from '../res/dimen';
 
 export function DialogView() {
   const [modalVisible, setModalVisible] = useState(true);
-  const vm = useDialogVM().dialogModel;
-  console.log(`Rendering ${vm.visibility} ${vm.title}`);
+  const vm = useDialogVM();
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={vm.visibility}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
-        setModalVisible(!modalVisible);
-      }}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <View style={styles.modalView}>
-          <Text style={styles.sectionTitle}>{vm.title}</Text>
-          <Text style={styles.sectionTitle}>{vm.description}</Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-            }}>
-            <Pressable onPress={() => vm.posFun()}>
-              <Text style={styles.sectionDescription}>{vm.positive}</Text>
-            </Pressable>
+    <View>
+      <FlatList
+        contentContainerStyle={{margin: dimenen.xs}}
+        ListFooterComponentStyle={{paddingEnd: dimenen.ivxl}}
+        ListFooterComponent={<View />}
+        horizontal={true}
+        data={vm.dialogs}
+        renderItem={({item}) => {
+          return (
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={item.visibility}
+              onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setModalVisible(!modalVisible);
+              }}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                }}>
+                <View style={styles.modalView}>
+                  <Text style={styles.sectionTitle}>{item.title}</Text>
+                  <Text style={styles.sectionTitle}>{item.description}</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-evenly',
+                    }}>
+                    <Pressable onPress={() => item.posFun()}>
+                      <Text style={styles.sectionDescription}>
+                        {item.positive}
+                      </Text>
+                    </Pressable>
 
-            {vm.neutral && vm.nutralFun && (
-              <Pressable onPress={() => vm.nutralFun()}>
-                <Text style={styles.sectionDescription}>{vm.neutral}</Text>
-              </Pressable>
-            )}
-            {vm.negative && vm.negFun && (
-              <Pressable onPress={() => vm.negFun()}>
-                <Text style={styles.sectionDescription}>{vm.negative}</Text>
-              </Pressable>
-            )}
-          </View>
-        </View>
-      </View>
-    </Modal>
+                    {item.neutral && item.nutralFun && (
+                      <Pressable onPress={() => item.nutralFun()}>
+                        <Text style={styles.sectionDescription}>
+                          {item.neutral}
+                        </Text>
+                      </Pressable>
+                    )}
+                    {item.negative && item.negFun && (
+                      <Pressable onPress={() => item.negFun()}>
+                        <Text style={styles.sectionDescription}>
+                          {item.negative}
+                        </Text>
+                      </Pressable>
+                    )}
+                  </View>
+                </View>
+              </View>
+            </Modal>
+          );
+        }}
+        keyExtractor={item => item.title}
+      />
+    </View>
   );
 }

@@ -9,7 +9,7 @@ const StuvvmsView = () => {
     <View style={styles.centered}>
       <Text style={styles.sectionTitle}>{count}</Text>
       <Button title="Increment" onPress={increment} />
-      <Button title="Go to Pokeom" onPress={navToPokemon} />
+      <Button title="Go to Pokemon" onPress={navToPokemon} />
     </View>
   );
 };

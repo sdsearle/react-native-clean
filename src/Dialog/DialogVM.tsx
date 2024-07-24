@@ -2,6 +2,10 @@ import {useContext} from 'react';
 import {DialogContext, useDialogRepo} from './DialogRepo';
 
 export const useDialogVM = () => {
-  const dialog = useContext(DialogContext);
-  return dialog;
+  const context = useContext(DialogContext);
+  const getDialogs = () => {
+    return context.dialogModels;
+  };
+  const dialogs = getDialogs();
+  return {dialogs};
 };

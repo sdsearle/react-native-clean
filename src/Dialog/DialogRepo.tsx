@@ -3,7 +3,7 @@ import {DialogModel, baseDialog} from './DialogModel';
 import React from 'react';
 
 export const useDialogRepo = () => {
-  const [dialogModel, setDialogModel] = useState<DialogModel>(baseDialog);
+  const [dialogModels, setDialogModels] = useState<DialogModel[]>([]);
 
   const createDialog = (
     t: string,
@@ -16,7 +16,6 @@ export const useDialogRepo = () => {
     negFun?: Function,
   ) => {
     let newDialog = {
-      ...dialogModel,
       title: t,
       description: des,
       positive: pos,
@@ -27,16 +26,21 @@ export const useDialogRepo = () => {
       negFun: negFun,
       visibility: true,
     };
+    let temp = dialogModels;
+    temp.push(newDialog);
     console.log(`Visibility ${newDialog.visibility}`);
+    console.log(`Length ${temp.length}`);
 
-    setDialogModel(newDialog);
+    setDialogModels(temp);
   };
 
   const removeDialog = () => {
-    setDialogModel(baseDialog);
+    let temp = dialogModels;
+    temp.pop();
+    setDialogModels(temp);
   };
 
-  return {dialogModel, createDialog, removeDialog};
+  return {dialogModels, createDialog, removeDialog};
 };
 
 export const DialogContext = React.createContext<

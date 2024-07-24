@@ -42,6 +42,10 @@ export const useCleanVM = () => {
 
   const showDialog = () => {
     createDialog('title', 'description', 'positive', closeDialog);
+    setTimeout(() => {
+      console.log('Hello, World!');
+      createDialog('NewTitle', 'New description', 'New positive', closeDialog);
+    }, 2000);
   };
 
   return {
