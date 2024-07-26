@@ -1,10 +1,10 @@
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {DialogModel, baseDialog} from './DialogModel';
 import React from 'react';
 
 export const useDialogRepo = () => {
   const [dialogModels, setDialogModels] = useState<DialogModel[]>([]);
-  let n = 0;
+  const n = useRef(0);
 
   const createDialog = (
     t: string,
@@ -27,9 +27,10 @@ export const useDialogRepo = () => {
       negative: neg,
       negFun: negFun,
       visibility: true,
-      id: n,
+      id: n.current,
     };
-    n++;
+    n.current = n.current + 1;
+
     console.log(`Visibility ${newDialog.visibility}`);
 
     setDialogModels(s => [...s, newDialog]);
@@ -40,7 +41,7 @@ export const useDialogRepo = () => {
     console.log(
       `Current Dialogs before removal: ${JSON.stringify(dialogModels)}`,
     );
-    setDialogModels(dialogModels.filter(dialog => dialog.id !== id));
+    setDialogModels(models => models.filter(dialog => dialog.id !== id));
   };
 
   return {dialogModels, createDialog, removeDialog};
