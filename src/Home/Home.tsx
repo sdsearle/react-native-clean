@@ -19,6 +19,10 @@ export function Home({viewModel, navigation}) {
           title="Go to Clean"
           onPress={() => navigation.navigate('Clean')}
         />
+        <Button
+          title="Go to Legend"
+          onPress={() => navigation.navigate('LegendPokemon')}
+        />
       </View>
       <TouchableOpacity style={styles.fab} onPress={viewModel.updateCount} />
     </View>

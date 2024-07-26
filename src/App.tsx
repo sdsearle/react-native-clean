@@ -14,9 +14,13 @@ import {CleanPokemonStart} from './CleanPokemon/CleanPokemonStart';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {DialogView} from './Dialog/DialogView';
 import {DialogProvider} from './Dialog/DialogRepo';
+import {enableReactNativeComponents} from '@legendapp/state/config/enableReactNativeComponents';
+import {LegendPokemon} from './Legend/LegendPokemon';
 
 const Stack = createNativeStackNavigator();
 const client = new QueryClient();
+
+enableReactNativeComponents();
 
 function App() {
   return (
@@ -36,6 +40,7 @@ function App() {
               <Stack.Screen name="STUVVMS" component={ViewStart} />
               <Stack.Screen name="Clean" component={CleanStart} />
               <Stack.Screen name="CleanPokemon" component={CleanPokemonStart} />
+              <Stack.Screen name="LegendPokemon" component={LegendPokemon} />
             </Stack.Navigator>
           </DialogProvider>
         </NavigationContainer>
