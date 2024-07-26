@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {DialogContext, useDialogRepo} from './DialogRepo';
+import {DialogContext} from './DialogRepo';
 
 export const useShowDialog = () => {
   const repo = useContext(DialogContext);

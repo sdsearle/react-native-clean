@@ -1,53 +1,125 @@
-import React, {useState} from 'react';
-import {Alert, Modal, Pressable, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Alert, FlatList, Modal, Pressable, Text, View} from 'react-native';
 import {styles} from '../res/Styles';
 import {useDialogVM} from './DialogVM';
 import {useHideDialogUseCase} from './HideDialogUseCase';
+import {DialogModel} from './DialogModel';
+import {dimenen} from '../res/dimen';
 
 export function DialogView() {
   const [modalVisible, setModalVisible] = useState(true);
-  const vm = useDialogVM().dialogModel;
-  console.log(`Rendering ${vm.visibility} ${vm.title}`);
+  const vm = useDialogVM();
+  console.log(`Rendering ${vm.dialogs.length} Dialogs`);
+  console.log(`Current dialogs ${JSON.stringify(vm.dialogs)}`);
+  // return (
+  //   <View>
+  //     {vm.dialogs.map((dialog, index) => (
+  //       <Modal
+  //         key={index}
+  //         animationType="slide"
+  //         transparent={true}
+  //         visible={true}
+  //         onRequestClose={() => {
+  //           Alert.alert('Modal has been closed.');
+  //           setModalVisible(!modalVisible);
+  //         }}>
+  //         <View
+  //           style={{
+  //             flex: 1,
+  //             justifyContent: 'center',
+  //           }}>
+  //           <View style={styles.modalView}>
+  //             <Text style={styles.sectionTitle}>{dialog.title}</Text>
+  //             <Text style={styles.sectionTitle}>{dialog.description}</Text>
+  //             <View
+  //               style={{
+  //                 flexDirection: 'row',
+  //                 justifyContent: 'space-evenly',
+  //               }}>
+  //               <Pressable onPress={() => dialog.posFun(dialog.id)}>
+  //                 <Text style={styles.sectionDescription}>
+  //                   {dialog.positive}
+  //                 </Text>
+  //               </Pressable>
+
+  //               {dialog.neutral && dialog.nutralFun && (
+  //                 <Pressable onPress={() => dialog.nutralFun(dialog.id)}>
+  //                   <Text style={styles.sectionDescription}>
+  //                     {dialog.neutral}
+  //                   </Text>
+  //                 </Pressable>
+  //               )}
+  //               {dialog.negative && dialog.negFun && (
+  //                 <Pressable onPress={() => dialog.negFun(dialog.id)}>
+  //                   <Text style={styles.sectionDescription}>
+  //                     {dialog.negative}
+  //                   </Text>
+  //                 </Pressable>
+  //               )}
+  //             </View>
+  //           </View>
+  //         </View>
+  //       </Modal>
+  //     ))}
+  //   </View>
+  // );
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={vm.visibility}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
-        setModalVisible(!modalVisible);
-      }}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-        }}>
-        <View style={styles.modalView}>
-          <Text style={styles.sectionTitle}>{vm.title}</Text>
-          <Text style={styles.sectionTitle}>{vm.description}</Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-            }}>
-            <Pressable onPress={() => vm.posFun()}>
-              <Text style={styles.sectionDescription}>{vm.positive}</Text>
-            </Pressable>
+    <View>
+      <FlatList
+        horizontal={true}
+        data={vm.dialogs}
+        renderItem={({item}) => {
+          return (
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={item.visibility}
+              onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setModalVisible(!modalVisible);
+              }}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                }}>
+                <View style={styles.modalView}>
+                  <Text style={styles.sectionTitle}>{item.title}</Text>
+                  <Text style={styles.sectionTitle}>{item.description}</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-evenly',
+                    }}>
+                    <Pressable onPress={() => item.posFun(item.id)}>
+                      <Text style={styles.sectionDescription}>
+                        {item.positive}
+                      </Text>
+                    </Pressable>
 
-            {vm.neutral && vm.nutralFun && (
-              <Pressable onPress={() => vm.nutralFun()}>
-                <Text style={styles.sectionDescription}>{vm.neutral}</Text>
-              </Pressable>
-            )}
-            {vm.negative && vm.negFun && (
-              <Pressable onPress={() => vm.negFun()}>
-                <Text style={styles.sectionDescription}>{vm.negative}</Text>
-              </Pressable>
-            )}
-          </View>
-        </View>
-      </View>
-    </Modal>
+                    {item.neutral && item.nutralFun && (
+                      <Pressable onPress={() => item.nutralFun(item.id)}>
+                        <Text style={styles.sectionDescription}>
+                          {item.neutral}
+                        </Text>
+                      </Pressable>
+                    )}
+                    {item.negative && item.negFun && (
+                      <Pressable onPress={() => item.negFun(item.id)}>
+                        <Text style={styles.sectionDescription}>
+                          {item.negative}
+                        </Text>
+                      </Pressable>
+                    )}
+                  </View>
+                </View>
+              </View>
+            </Modal>
+          );
+        }}
+        keyExtractor={item => `${item.id}`}
+      />
+    </View>
   );
 }

@@ -1,9 +1,10 @@
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {DialogModel, baseDialog} from './DialogModel';
 import React from 'react';
 
 export const useDialogRepo = () => {
-  const [dialogModel, setDialogModel] = useState<DialogModel>(baseDialog);
+  const [dialogModels, setDialogModels] = useState<DialogModel[]>([]);
+  const n = useRef(0);
 
   const createDialog = (
     t: string,
@@ -15,8 +16,8 @@ export const useDialogRepo = () => {
     neg?: string,
     negFun?: Function,
   ) => {
+    console.log(`ZOL Creating with id ${n}`);
     let newDialog = {
-      ...dialogModel,
       title: t,
       description: des,
       positive: pos,
@@ -26,17 +27,24 @@ export const useDialogRepo = () => {
       negative: neg,
       negFun: negFun,
       visibility: true,
+      id: n.current,
     };
+    n.current = n.current + 1;
+
     console.log(`Visibility ${newDialog.visibility}`);
 
-    setDialogModel(newDialog);
+    setDialogModels(s => [...s, newDialog]);
   };
 
-  const removeDialog = () => {
-    setDialogModel(baseDialog);
+  const removeDialog = (id: number) => {
+    console.log(`Removing modal with ID: ${id}`);
+    console.log(
+      `Current Dialogs before removal: ${JSON.stringify(dialogModels)}`,
+    );
+    setDialogModels(models => models.filter(dialog => dialog.id !== id));
   };
 
-  return {dialogModel, createDialog, removeDialog};
+  return {dialogModels, createDialog, removeDialog};
 };
 
 export const DialogContext = React.createContext<

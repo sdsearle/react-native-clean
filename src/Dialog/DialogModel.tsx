@@ -1,4 +1,4 @@
-export interface DialogModel {
+export type DialogModel = {
   title: string;
   description: string;
   positive: string;
@@ -8,7 +8,8 @@ export interface DialogModel {
   negative?: string;
   negFun?: Function;
   visibility: boolean;
-}
+  id: number;
+};
 
 export const baseDialog: DialogModel = {
   title: 'Base',
@@ -20,4 +21,5 @@ export const baseDialog: DialogModel = {
   negative: '',
   negFun: () => {},
   visibility: false,
+  id: 0,
 };
