@@ -2,18 +2,21 @@ import React, {useContext, useEffect, useRef} from 'react';
 import {Button, FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {dimenen} from '../res/dimen';
 import {getTextColor, styles} from '../res/Styles';
-import {observer} from '@legendapp/state/react';
-import {apiStore, store$} from './PokeStore';
+import {observer, useObservable} from '@legendapp/state/react';
+import {PokeStore, store$} from './PokeStore';
+import {Observable} from '@reduxjs/toolkit';
+import {UseQueryResult} from 'react-query';
 
 export const LegendPokemon = observer(function LegendPokemon() {
-  const pokeStore = store$;
-  const pokeResults = apiStore.get();
-  console.log(pokeResults);
+  const pokeStore: PokeStore = store$.get();
+  const query = store$.query;
+  console.log(query.get());
   const pokeColors = pokeStore.colors;
   const colorButtonHandler = (color: string) => {
+    console.log(color);
     pokeStore.setCurrentColor(color);
   };
-  console.log('Poke render');
+  console.log(`Poke render current color = ${pokeStore.currentColor}`);
   return (
     <View style={{flex: 1}}>
       <View>
@@ -29,27 +32,27 @@ export const LegendPokemon = observer(function LegendPokemon() {
               <TouchableOpacity
                 style={{
                   margin: dimenen.xs,
-                  backgroundColor: item.value.get(),
+                  backgroundColor: item.value,
                 }}
-                onPress={() => colorButtonHandler(item.key.get())}>
+                onPress={() => colorButtonHandler(item.key)}>
                 <Text
                   style={
                     (styles.sectionTitle,
                     {
-                      color: getTextColor(item.value.get()),
+                      color: getTextColor(item.value),
                       padding: 16,
                       fontSize: 24,
                     })
                   }>
-                  {title.get()}
+                  {title}
                 </Text>
               </TouchableOpacity>
             );
           }}
-          keyExtractor={item => item.key.get()}
+          keyExtractor={item => item.key}
         />
       </View>
-      {true ? (
+      {pokeStore ? (
         <Text style={styles.sectionTitle}>{'...Loading'}</Text>
       ) : (
         <FlatList
@@ -68,7 +71,7 @@ export const LegendPokemon = observer(function LegendPokemon() {
                   paddingStart: dimenen.xs,
                   backgroundColor: `rgba(${color}, ${color}, ${color}, 1)`,
                 }}>
-                <Text style={styles.sectionTitle}>{item.name}</Text>
+                <Text style={styles.sectionTitle}>{'item'}</Text>
               </View>
             );
           }}
