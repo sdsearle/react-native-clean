@@ -3,7 +3,8 @@ import {Button, FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {dimenen} from '../res/dimen';
 import {getTextColor, styles} from '../res/Styles';
 import {observer, useObservable} from '@legendapp/state/react';
-import {PokeStore, store$, useGetQuery} from './PokeStore';
+import {PokeStore, store$} from './PokeStore';
+import {useCaseGetPokemonByColor} from './useGetPokemonQueryUseCase';
 import {Observable} from '@reduxjs/toolkit';
 import {UseQueryResult} from 'react-query';
 import {useLegendViewModel} from './LegendViewModel';
@@ -46,7 +47,7 @@ export const LegendPokemon = observer(function LegendPokemon() {
           keyExtractor={item => item.key}
         />
       </View>
-      {vm.query.isLoading ? (
+      {vm.query === undefined || vm.query.isLoading ? (
         <Text style={styles.sectionTitle}>{'...Loading'}</Text>
       ) : (
         <FlatList
