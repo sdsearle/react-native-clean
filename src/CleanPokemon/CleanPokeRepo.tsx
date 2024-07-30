@@ -8,7 +8,7 @@ import {useQuery} from 'react-query';
 export const usePokeRepo = () => {
   const [colors, setColors] = useState(PokemonColors);
   let currentColor = 'black';
-  const query = useQuery([currentColor], () => getPokemon(currentColor));
+  //const query = useQuery([currentColor], () => getPokemon(currentColor));
 
   //This was used before react query
   //   useEffect(() => {
@@ -40,10 +40,10 @@ export const usePokeRepo = () => {
     //api.then(r => setPokemon(r));
     console.log(color);
     currentColor = color;
-    query.refetch();
+    //query.refetch();
   };
 
-  return {colors, query, setSelectedColor};
+  return {colors, setSelectedColor};
 };
 
 //Avoid using context unless neccessary. Example of this is Global UI see Dialog usecase

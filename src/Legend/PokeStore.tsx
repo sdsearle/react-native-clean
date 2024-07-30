@@ -2,7 +2,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {PokemonColors} from '../Pokemon/PokemonColors';
 import {PokemonModel} from '../Pokemon/PokemonModels';
 import {Observable, observable} from '@legendapp/state';
-import {QueryClient, UseQueryResult} from 'react-query';
+import {QueryClient, UseQueryResult, useQuery} from 'react-query';
 import {syncedQuery} from '@legendapp/state/sync-plugins/tanstack-query';
 import {getPokemon} from '../Pokemon/PokemonAPI';
 import {useObservable} from '@legendapp/state/react';
@@ -15,6 +15,11 @@ export interface PokeStore {
 }
 
 const queryClient = new QueryClient();
+
+export const useGetQuery = (color: string) => {
+  const query = useQuery([color], () => getPokemon(color));
+  return query;
+};
 
 export const store$: Observable<PokeStore> = observable<PokeStore>({
   colors: PokemonColors,
