@@ -8,12 +8,44 @@ import {PokeProvider} from '../Pokemon/PokeProvider';
 import {PokeRepoContext, PokeRepoProvider} from './CleanPokeRepo';
 import {Child} from './Child';
 import ChildMemo from './ChildMemo';
+import {storage} from '../App';
+
+function MMKVTest(name: string, age: number, info: boolean) {
+  for (let i = 0; i < 100000; i++) {
+    storage.set('user.name', name);
+    storage.set('user.age', age);
+    storage.set('user.name', name + '1');
+    storage.set('user.age', age + 1);
+  }
+  storage.set('is-mmkv-fast-asf', info);
+}
 
 export function CleanPokemon() {
+  const name = 'Test';
+  const age = 20;
+  const info = true;
+  useEffect(() => {
+    async () => {
+      setTimeout(() => {
+        MMKVTest(name, age, info);
+      }, 5000);
+    };
+    return () => {
+      var resolution;
+      var StartTime = Date.now();
+      MMKVTest(name, age, info);
+      var EndTime = Date.now();
+      resolution = EndTime - StartTime;
+      var resolutionTime = resolution / 1000;
+      console.log(resolutionTime);
+    };
+  });
+
+  useEffect(() => {
+    throw 'Deliberate Error!';
+  });
+
   const vm = usePokeVM();
-  const colorButtonHandler = (color: string) => {
-    vm.useGetPokemonOfColor(color);
-  };
   console.log('Poke render');
   return (
     <View style={{flex: 1}}>
@@ -32,7 +64,7 @@ export function CleanPokemon() {
                   margin: dimenen.xs,
                   backgroundColor: item.value,
                 }}
-                onPress={() => colorButtonHandler(item.key)}>
+                onPress={() => vm.colorButtonHandler(item.key)}>
                 <Text
                   style={
                     (styles.sectionTitle,

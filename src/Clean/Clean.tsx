@@ -3,9 +3,12 @@ import {Button, FlatList, Text, View} from 'react-native';
 import {styles} from '../res/Styles';
 import {useCleanVM} from './CleanVM';
 import {countStoreRepo, todosStore} from './CountStoreRepo';
+import {storage} from '../App';
 
 export function Clean() {
   //console.log('Rendering');
+  const info = storage.getBoolean('is-mmkv-fast-asf');
+  console.log(`ZOL ${JSON.stringify(info)}`);
   const vm = useCleanVM();
   return (
     <View style={styles.centered}>

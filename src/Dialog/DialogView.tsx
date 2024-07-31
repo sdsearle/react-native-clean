@@ -7,62 +7,9 @@ import {DialogModel} from './DialogModel';
 import {dimenen} from '../res/dimen';
 
 export function DialogView() {
-  const [modalVisible, setModalVisible] = useState(true);
   const vm = useDialogVM();
   console.log(`Rendering ${vm.dialogs.length} Dialogs`);
   console.log(`Current dialogs ${JSON.stringify(vm.dialogs)}`);
-  // return (
-  //   <View>
-  //     {vm.dialogs.map((dialog, index) => (
-  //       <Modal
-  //         key={index}
-  //         animationType="slide"
-  //         transparent={true}
-  //         visible={true}
-  //         onRequestClose={() => {
-  //           Alert.alert('Modal has been closed.');
-  //           setModalVisible(!modalVisible);
-  //         }}>
-  //         <View
-  //           style={{
-  //             flex: 1,
-  //             justifyContent: 'center',
-  //           }}>
-  //           <View style={styles.modalView}>
-  //             <Text style={styles.sectionTitle}>{dialog.title}</Text>
-  //             <Text style={styles.sectionTitle}>{dialog.description}</Text>
-  //             <View
-  //               style={{
-  //                 flexDirection: 'row',
-  //                 justifyContent: 'space-evenly',
-  //               }}>
-  //               <Pressable onPress={() => dialog.posFun(dialog.id)}>
-  //                 <Text style={styles.sectionDescription}>
-  //                   {dialog.positive}
-  //                 </Text>
-  //               </Pressable>
-
-  //               {dialog.neutral && dialog.nutralFun && (
-  //                 <Pressable onPress={() => dialog.nutralFun(dialog.id)}>
-  //                   <Text style={styles.sectionDescription}>
-  //                     {dialog.neutral}
-  //                   </Text>
-  //                 </Pressable>
-  //               )}
-  //               {dialog.negative && dialog.negFun && (
-  //                 <Pressable onPress={() => dialog.negFun(dialog.id)}>
-  //                   <Text style={styles.sectionDescription}>
-  //                     {dialog.negative}
-  //                   </Text>
-  //                 </Pressable>
-  //               )}
-  //             </View>
-  //           </View>
-  //         </View>
-  //       </Modal>
-  //     ))}
-  //   </View>
-  // );
 
   return (
     <View>
@@ -75,10 +22,7 @@ export function DialogView() {
               animationType="slide"
               transparent={true}
               visible={item.visibility}
-              onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
-                setModalVisible(!modalVisible);
-              }}>
+              onRequestClose={vm.close}>
               <View
                 style={{
                   flex: 1,

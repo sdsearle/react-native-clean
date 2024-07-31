@@ -5,6 +5,10 @@ let c: typeof counter = counter;
 let nextId = 0;
 let todos = [{id: nextId++, text: 'Todo #1'}];
 
+class mTodos {
+  todos = [{id: nextId++, text: 'Todo #1'}];
+}
+
 export const countStoreRepo = {
   increment() {
     c = {...c, count: c.count + 1};

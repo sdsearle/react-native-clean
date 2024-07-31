@@ -16,9 +16,11 @@ import {DialogView} from './Dialog/DialogView';
 import {DialogProvider} from './Dialog/DialogRepo';
 import {enableReactNativeComponents} from '@legendapp/state/config/enableReactNativeComponents';
 import {LegendPokemon} from './Legend/LegendPokemon';
+import {MMKV} from 'react-native-mmkv';
 
 const Stack = createNativeStackNavigator();
 const client = new QueryClient();
+export const storage = new MMKV();
 
 enableReactNativeComponents();
 

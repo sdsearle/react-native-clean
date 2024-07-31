@@ -7,7 +7,9 @@ import {useQuery} from 'react-query';
 
 export const usePokeRepo = () => {
   const [colors, setColors] = useState(PokemonColors);
-  let currentColor = 'black';
+  //Moved the current color into VM
+  //let currentColor = 'black';
+  //
   //const query = useQuery([currentColor], () => getPokemon(currentColor));
 
   //This was used before react query
@@ -39,7 +41,7 @@ export const usePokeRepo = () => {
     //const api = getPokemon(color);
     //api.then(r => setPokemon(r));
     console.log(color);
-    currentColor = color;
+    //currentColor = color;
     //query.refetch();
   };
 

@@ -2,7 +2,7 @@ import {useRef, useState} from 'react';
 import {DialogModel, baseDialog} from './DialogModel';
 import React from 'react';
 
-export const useDialogRepo = () => {
+export const useDialogStore = () => {
   const [dialogModels, setDialogModels] = useState<DialogModel[]>([]);
   const n = useRef(0);
 
@@ -48,11 +48,11 @@ export const useDialogRepo = () => {
 };
 
 export const DialogContext = React.createContext<
-  ReturnType<typeof useDialogRepo>
+  ReturnType<typeof useDialogStore>
 >({} as any);
 
 export const DialogProvider: React.FC = ({children}) => {
-  const dialogRepo = useDialogRepo();
+  const dialogRepo = useDialogStore();
 
   return (
     <DialogContext.Provider value={dialogRepo}>
