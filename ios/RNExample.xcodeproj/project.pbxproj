@@ -12,6 +12,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1C808A8F2C62D1260005708D /* RNExample-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 1CE39AFD2C61367800E5BD28 /* RNExample-Bridging-Header.h */; };
+		1C808A902C62D1260005708D /* MMKVBGModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE39B012C616BF400E5BD28 /* MMKVBGModule.swift */; };
+		1C808A912C62D1260005708D /* MMKVBGModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C808A8E2C62B9D20005708D /* MMKVBGModule.m */; };
 		7699B88040F8A987B510C191 /* libPods-RNExample-RNExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-RNExample-RNExampleTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -399,6 +402,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C808A8F2C62D1260005708D /* RNExample-Bridging-Header.h in Sources */,
+				1C808A902C62D1260005708D /* MMKVBGModule.swift in Sources */,
+				1C808A912C62D1260005708D /* MMKVBGModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -419,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-RNExample-RNExampleTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = XVDDLPF4AN;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -447,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-RNExample-RNExampleTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = XVDDLPF4AN;

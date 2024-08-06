@@ -6,7 +6,8 @@
 //
 
 #import <React/RCTBridgeModule.h>
+
 @interface RCT_EXTERN_MODULE(MMKVBGModule, NSObject)
 RCT_EXTERN_METHOD(saveDataBG:(RCTPromiseResolveBlock)resolve
-                  rejector:(RCTPromiseRejectBlock)reject)
+                  rejecter:(RCTPromiseRejectBlock)reject)
 @end
