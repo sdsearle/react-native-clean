@@ -19,7 +19,7 @@ import {storage} from '../App';
 import {saveMMKVData} from '../nativeMods/MMKVBGModule';
 
 function MMKVTest(name: string, age: number, info: boolean) {
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 5000; i++) {
     storage.set('user.name', name);
     storage.set('user.age', age);
     storage.set('user.name', name + '1');
@@ -33,12 +33,19 @@ export function CleanPokemon() {
   const age = 20;
   const info = false;
   useEffect(() => {
-    saveMMKVData();
+    var resolution;
+    var StartTime = Date.now();
+    MMKVTest(name, age, info);
+    var EndTime = Date.now();
+    resolution = EndTime - StartTime;
+    var resolutionTime = resolution / 1000;
+    console.log(resolutionTime);
 
     return () => {
-      //saveMMKVData();
+      saveMMKVData();
     };
   });
+
   // useEffect(() => {
   //   const sub = AppState.addEventListener('change', handleAppStateChange);
 
