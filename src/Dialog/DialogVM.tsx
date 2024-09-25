@@ -7,5 +7,5 @@ export const useDialogVM = () => {
     return context.dialogModels;
   };
   const dialogs = getDialogs();
-  return {dialogs};
+  return dialogs?.[0];
 };

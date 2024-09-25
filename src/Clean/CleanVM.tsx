@@ -1,4 +1,4 @@
-import {useSyncExternalStore} from 'react';
+import {useEffect, useSyncExternalStore} from 'react';
 import {countStoreRepo} from './CountStoreRepo';
 import {getCountUseCase, incrementCountStoreUseCase} from './IncrementUseCase';
 import {useCleanRepo} from './CleanRepo';
@@ -12,6 +12,13 @@ export const useCleanVM = () => {
   const nav = useNavigation();
   const createDialog = useShowDialog();
   const closeDialog = useHideDialogUseCase();
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      cleanRepo.increment();
+    }, 1000); // Update every second
+
+    return () => clearInterval(intervalId);
+  }, [cleanRepo]);
 
   const counter = useSyncExternalStore(
     countStoreRepo.subscribe,

@@ -8,9 +8,9 @@ import {dimenen} from '../res/dimen';
 
 export function DialogView() {
   const [modalVisible, setModalVisible] = useState(true);
-  const vm = useDialogVM();
-  console.log(`Rendering ${vm.dialogs.length} Dialogs`);
-  console.log(`Current dialogs ${JSON.stringify(vm.dialogs)}`);
+  const vm: DialogModel | undefined = useDialogVM();
+  console.log(`Rendering ${vm} Dialogs`);
+  console.log(`Current dialogs ${JSON.stringify(vm)}`);
   // return (
   //   <View>
   //     {vm.dialogs.map((dialog, index) => (
@@ -64,62 +64,60 @@ export function DialogView() {
   //   </View>
   // );
 
-  return (
-    <View>
-      <FlatList
+  if (vm) {
+    return (
+      <View>
+        {/* <FlatList
         horizontal={true}
         data={vm.dialogs}
         renderItem={({item}) => {
-          return (
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={item.visibility}
-              onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
-                setModalVisible(!modalVisible);
-              }}>
+          return ( */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={vm?.visibility}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setModalVisible(!modalVisible);
+          }}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+            }}>
+            <View style={styles.modalView}>
+              <Text style={styles.sectionTitle}>{vm?.title}</Text>
+              <Text style={styles.sectionTitle}>{vm?.description}</Text>
               <View
                 style={{
-                  flex: 1,
-                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  justifyContent: 'space-evenly',
                 }}>
-                <View style={styles.modalView}>
-                  <Text style={styles.sectionTitle}>{item.title}</Text>
-                  <Text style={styles.sectionTitle}>{item.description}</Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-evenly',
-                    }}>
-                    <Pressable onPress={() => item.posFun(item.id)}>
-                      <Text style={styles.sectionDescription}>
-                        {item.positive}
-                      </Text>
-                    </Pressable>
+                <Pressable onPress={() => vm?.posFun(vm?.id)}>
+                  <Text style={styles.sectionDescription}>{vm?.positive}</Text>
+                </Pressable>
 
-                    {item.neutral && item.nutralFun && (
-                      <Pressable onPress={() => item.nutralFun(item.id)}>
-                        <Text style={styles.sectionDescription}>
-                          {item.neutral}
-                        </Text>
-                      </Pressable>
-                    )}
-                    {item.negative && item.negFun && (
-                      <Pressable onPress={() => item.negFun(item.id)}>
-                        <Text style={styles.sectionDescription}>
-                          {item.negative}
-                        </Text>
-                      </Pressable>
-                    )}
-                  </View>
-                </View>
+                {vm?.neutral && vm?.nutralFun && (
+                  <Pressable onPress={() => vm?.nutralFun(vm?.id)}>
+                    <Text style={styles.sectionDescription}>{vm?.neutral}</Text>
+                  </Pressable>
+                )}
+                {vm?.negative && vm?.negFun && (
+                  <Pressable onPress={() => vm?.negFun(vm?.id)}>
+                    <Text style={styles.sectionDescription}>
+                      {vm?.negative}
+                    </Text>
+                  </Pressable>
+                )}
               </View>
-            </Modal>
-          );
+            </View>
+          </View>
+        </Modal>
+        {/* );
         }}
         keyExtractor={item => `${item.id}`}
-      />
-    </View>
-  );
+      /> */}
+      </View>
+    );
+  }
 }
